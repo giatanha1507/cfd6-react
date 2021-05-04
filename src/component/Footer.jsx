@@ -13,14 +13,14 @@ export function Footer() {
             </p>
             <p className="phone">(+84) 98 9596 913</p>
             <div className="social">
-              <a href="#">
-                <img src="img/fb-icon.png" alt="" />
+              <a href="#" className="customImg">
+                <img src="/img/fb-icon.png" alt="" />
               </a>
-              <a href="#">
-                <img src="img/email-icon.png" alt="" />
+              <a href="#" className="customImg">
+                <img src="/img/email-icon.png" alt="" />
               </a>
-              <a href="#">
-                <img src="img/skype-icon.png" alt="" />
+              <a href="#" className="customImg">
+                <img src="/img/skype-icon.png" alt="" />
               </a>
             </div>
           </div>
