@@ -2,8 +2,9 @@ import React from "react";
 import { Header, Footer } from "./component";
 import Home from "./page/home";
 import Team from "./page/team";
-import Register from "./page/register"
-import Project from "./page/project"
+import Register from "./page/register";
+import Project from "./page/project";
+import Profile from "./page/profile";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       {/* <Home /> */}
       {/* <Team /> */}
       {/* <Register /> */}
-      <Project/>
+      {/* <Project/> */}
+      <Profile />
       <Footer />
     </div>
   );
