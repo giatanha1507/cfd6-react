@@ -3,6 +3,8 @@ import CoinInfo from "./component/CoinInfo";
 import CourseDid from "./component/CourseDid";
 import MyCourse from "./component/MyCourse";
 import PaymentHis from "./component/PaymentHis";
+import TabInfo from "./component/TabInfo";
+import TabTitle from "./component/TabTitle";
 import TopInfo from "./component/TopInfo";
 
 export default function Profile() {
@@ -16,52 +18,10 @@ export default function Profile() {
         />
         <div className="container">
           <div className="tab">
-            <div className="tab-title">
-              <a href="#" className="active">
-                Thông tin tài khoản
-              </a>
-              <a href="#">Khóa học của bạn</a>
-              <a href="#">Dự án đã làm</a>
-              <a href="#">Lịch sử thanh toán</a>
-              <a href="#">Quản lý COIN của tôi</a>
-            </div>
+            <TabTitle />
             <div className="tab-content">
               <div className="tab1" style={{ display: "none" }}>
-                <label>
-                  <p>
-                    Họ và tên<span>*</span>
-                  </p>
-                  <input type="text" placeholder="Nguyễn Văn A" />
-                </label>
-                <label>
-                  <p>
-                    Số điện thoại<span>*</span>
-                  </p>
-                  <input type="text" placeholder="0949******" />
-                </label>
-                <label>
-                  <p>
-                    Email<span>*</span>
-                  </p>
-                  <input
-                    defaultValue="vuong.dang@dna.vn"
-                    disabled
-                    type="text"
-                  />
-                </label>
-                <label>
-                  <p>
-                    Facebook<span>*</span>
-                  </p>
-                  <input type="text" placeholder="Facebook url" />
-                </label>
-                <label>
-                  <p>
-                    Skype<span>*</span>
-                  </p>
-                  <input type="text" placeholder="Skype url" />
-                </label>
-                <div className="btn main rect">LƯU LẠI</div>
+                <TabInfo />
               </div>
               <div className="tab2" style={{ display: "none" }}>
                 <MyCourse
