@@ -1,3 +1,5 @@
+import useDelayLink from "../hook/useDelayLink";
+
 export function CourseItem({
   name,
   description,
@@ -8,6 +10,7 @@ export function CourseItem({
   user,
   heart,
 }) {
+  let delayLink = useDelayLink();
   return (
     <div className="col-md-4 course">
       <div className="wrap">

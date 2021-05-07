@@ -1,9 +1,21 @@
+import { Link, NavLink } from "react-router-dom";
+import useDelayLink from "../hook/useDelayLink";
+
+function menuOpen() {
+  document.body.classList.toggle("menu-is-show");
+}
+
+function menuClose() {
+  document.body.classList.remove("menu-is-show");
+}
+
 export function Header() {
+  let delayLink = useDelayLink();
   return (
     <>
       <header id="header">
         <div className="wrap">
-          <div className="menu-hambeger">
+          <div className="menu-hambeger" onClick={menuOpen}>
             <div className="button">
               <span />
               <span />
@@ -11,10 +23,10 @@ export function Header() {
             </div>
             <span className="text">menu</span>
           </div>
-          <a href="#" className="logo">
+          <Link to="/" className="logo" onClick={menuClose}>
             <img src="img/logo.svg" alt="" />
             <h1>CFD</h1>
-          </a>
+          </Link>
           <div className="right">
             <div className="have-login">
               <div className="account">
@@ -39,29 +51,33 @@ export function Header() {
           </div>
         </div>
       </header>
-      <nav className="nav">
+      <nav className="nav" onClick={menuClose}>
         <ul>
           <li className="li_login">
             <a href="#">Đăng ký / Đăng nhập</a>
           </li>
-          <li className="active">
-            <a href="#">Trang chủ</a>
+          <li>
+            <NavLink exact to="/">
+              Trang chủ
+            </NavLink>
           </li>
           <li>
-            <a href="#">CFD Team</a>
+            <NavLink to="/team">CFD Team</NavLink>
           </li>
           <li>
-            <a href="#">Khóa Học</a>
+            <NavLink onClick={delayLink} to="/course">
+              Khóa Học
+            </NavLink>
           </li>
           <li>
-            <a href="#">Dự Án</a>
+            <NavLink to="/profile">Dự Án</NavLink>
           </li>
           <li>
-            <a href="#">Liên hệ</a>
+            <NavLink to="/payment">Liên hệ</NavLink>
           </li>
         </ul>
       </nav>
-      <div className="overlay_nav" />
+      <div className="overlay_nav" onClick={menuClose} />
     </>
   );
 }

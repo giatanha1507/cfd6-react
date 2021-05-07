@@ -1,1 +1,16 @@
-
+.text-error {
+  color: red !important;
+  font-style: italic;
+  width: 100% !important;
+  padding-left: 180px !important;
+  padding-top: 10px;
+  /* margin-bottom: 10px; */
+}
+/* .form {
+  flex-wrap: wrap;
+  width: 100% !important;
+} */
+.nav ul li a.active {
+  background: #00afab;
+  color: white;
+}
