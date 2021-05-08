@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CourseItem } from "../../../component";
 
 export function CourseList() {
@@ -83,7 +83,7 @@ export function CourseList() {
             <h2 className="main-title">Khóa học Online</h2>
           </div>
           <div className="list row">
-            <CourseItem
+            {/* <CourseItem
               name="React JS"
               description="One of the best corporate fashion brands in Sydney"
               image="img/img1.png"
@@ -112,7 +112,7 @@ export function CourseList() {
               status="da-ket-thuc"
               user="5"
               heart="50"
-            />
+            /> */}
           </div>
           <div className="text-deco">C</div>
         </div>

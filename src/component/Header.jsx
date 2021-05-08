@@ -1,16 +1,36 @@
 import { Link, NavLink } from "react-router-dom";
 import useDelayLink from "../hook/useDelayLink";
 
-function menuOpen() {
-  document.body.classList.toggle("menu-is-show");
-}
-
-function menuClose() {
-  document.body.classList.remove("menu-is-show");
-}
-
 export function Header() {
   let delayLink = useDelayLink();
+  function menuOpen() {
+    document.body.classList.toggle("menu-is-show");
+  }
+
+  function menuClose() {
+    console.log("click");
+    // window.scrollTo(0, 0);
+    document.querySelector(".loading-page").style.transform = "scale(12)";
+    document.body.classList.remove("menu-is-show");
+  }
+  function _menuClose() {
+    document.body.classList.remove("menu-is-show");
+  }
+  function _clickLogo(e) {
+    // window.scrollTo(0, 0);
+    menuClose();
+    delayLink(e);
+  }
+
+  function _Login(e) {
+    e.preventDefault();
+    document.querySelector(".login").style.display = "flex";
+  }
+
+  function _Logup(e) {
+    e.preventDefault();
+    document.querySelector(".logup").style.display = "flex";
+  }
   return (
     <>
       <header id="header">
@@ -23,61 +43,71 @@ export function Header() {
             </div>
             <span className="text">menu</span>
           </div>
-          <Link to="/" className="logo" onClick={menuClose}>
+          <Link to="/" className="logo" onClick={_clickLogo}>
             <img src="img/logo.svg" alt="" />
             <h1>CFD</h1>
           </Link>
           <div className="right">
-            <div className="have-login">
+            {/* <div className="have-login">
               <div className="account">
-                <a href="#" className="info">
+                <Link to="/profile" className="info">
                   <div className="name">Trần Lê Trọng Nghĩa</div>
                   <div className="avatar">
                     <img src="img/avt.png" alt="" />
                   </div>
-                </a>
+                </Link>
               </div>
               <div className="hamberger"></div>
               <div className="sub">
-                <a href="#">Khóa học của tôi</a>
-                <a href="#">Thông tin tài khoản</a>
-                <a href="#">Đăng xuất</a>
+                <Link to="/profile/my-course-wrap">Khóa học của tôi</Link>
+                <Link to="/profile">Thông tin tài khoản</Link>
+                <Link to="">Đăng xuất</Link>
               </div>
+            </div> */}
+            <div class="not-login bg-none">
+              <a href="#" class="btn-register" onClick={_Login}>
+                Đăng nhập
+              </a>
+              <a href="#" class="btn main btn-open-login" onClick={_Logup}>
+                Đăng ký
+              </a>
             </div>
-            {/* <div class="not-login bg-none">
-                    <a href="#" class="btn-register">Đăng nhập</a>
-                    <a href="login.html" class="btn main btn-open-login">Đăng ký</a>
-                </div> */}
           </div>
         </div>
       </header>
-      <nav className="nav" onClick={menuClose}>
+      <nav className="nav" onClick={_menuClose}>
         <ul>
           <li className="li_login">
             <a href="#">Đăng ký / Đăng nhập</a>
           </li>
           <li>
-            <NavLink exact to="/">
+            <NavLink onClick={_clickLogo} exact to="/">
               Trang chủ
             </NavLink>
           </li>
           <li>
-            <NavLink to="/team">CFD Team</NavLink>
+            <NavLink onClick={_clickLogo} to="/team">
+              CFD Team
+            </NavLink>
           </li>
           <li>
-            <NavLink onClick={delayLink} to="/course">
+            <NavLink onClick={_clickLogo} to="/course">
               Khóa Học
             </NavLink>
           </li>
           <li>
-            <NavLink to="/profile">Dự Án</NavLink>
+            <NavLink onClick={_clickLogo} to="/project">
+              Dự Án
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/payment">Liên hệ</NavLink>
+            <NavLink onClick={_clickLogo} to="/operate">
+              Liên hệ
+            </NavLink>
           </li>
         </ul>
       </nav>
-      <div className="overlay_nav" onClick={menuClose} />
+      <div className="overlay_nav" onClick={_menuClose} />
     </>
   );
 }

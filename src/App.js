@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Footer } from "./component";
+import { Header, Footer, Login, Logup } from "./component";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./page/home";
 import Team from "./page/team";
@@ -14,11 +14,14 @@ import CourseDetail from "./page/course-detaill";
 import Course from "./page/course";
 import Operate from "./page/co-operate";
 import "./assets/customcss/custom.css";
+import NotFound from "./page/404";
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
+        <Login />
+        <Logup />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/team" component={Team} />
@@ -32,6 +35,7 @@ function App() {
           <Route path="/course/:slug" component={CourseDetail} />
           <Route path="/course" component={Course} />
           <Route path="/operate" component={Operate} />
+          <Route path="" component={NotFound} />
         </Switch>
         <Footer />
       </div>

@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import useDelayLink from "../hook/useDelayLink";
 
 export function CourseItem({
-  name,
+  title,
   description,
   image,
   teacher_name,
@@ -40,7 +41,7 @@ export function CourseItem({
         </a>
         <div className="info">
           <a className="name" href="#">
-            {name}
+            {title}
           </a>
           <p className="des">{description}</p>
         </div>
@@ -51,7 +52,9 @@ export function CourseItem({
             </div>
             <div className="name">{teacher_name}</div>
           </div>
-          <div className="register-btn">Đăng Ký</div>
+          <Link to="/register" className="register-btn">
+            Đăng Ký
+          </Link>
         </div>
       </div>
     </div>

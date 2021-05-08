@@ -14,3 +14,14 @@
   background: #00afab;
   color: white;
 }
+.loading-page {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  background: #00afab;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%) scale(0);
+  transition-duration: 0.9s;
+  border-radius: 100%;
+}
