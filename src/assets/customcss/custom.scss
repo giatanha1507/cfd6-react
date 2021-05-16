@@ -5,7 +5,14 @@
   padding-left: 180px !important;
   padding-top: 10px;
   /* margin-bottom: 10px; */
+  /* profile {
+    padding-left: 160px !important;
+  } */
+  &.profile {
+    padding-left: 160px !important;
+  }
 }
+
 /* .form {
   flex-wrap: wrap;
   width: 100% !important;
@@ -14,6 +21,10 @@
   background: #00afab;
   color: white;
 }
+.nav ul li a {
+  height: auto !important;
+}
+
 .loading-page {
   position: fixed;
   width: 200px;
@@ -21,7 +32,8 @@
   background: #00afab;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   transition-duration: 0.9s;
   border-radius: 100%;
+  z-index: 200;
 }

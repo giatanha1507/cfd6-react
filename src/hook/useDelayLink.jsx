@@ -10,7 +10,8 @@ export default function useDelayLink() {
     e.preventDefault();
     setTimeout(() => {
       history.push(href);
-      document.querySelector(".loading-page").style.transform = "scale(0)";
+      document.querySelector(".loading-page").style.transform =
+        "translate(-50%, -50%) scale(0)";
     }, 1000);
 
     document.body.classList.remove("menu-is-show");

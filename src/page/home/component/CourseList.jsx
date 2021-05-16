@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CourseItem } from "../../../component";
 
-export function CourseList() {
+export function CourseList({ online, offline }) {
   return (
     <>
       <section className="section-courseoffline">
@@ -14,66 +14,10 @@ export function CourseList() {
             <h2 className="main-title">Khóa học Offline</h2>
           </div>
           <div className="list row">
-            <CourseItem
-              name="React JS"
-              description="One of the best corporate fashion brands in Sydney"
-              image="img/img1.png"
-              teacher_name="Đặng Thuyền Vương"
-              teacher_avatar="img/avt.png"
-              status="dang-dien-ra"
-              user="10"
-              heart="100"
-            />
-            <CourseItem
-              name="React JS"
-              description="One of the best corporate fashion brands in Sydney"
-              image="img/img1.png"
-              teacher_name="Đặng Thuyền Vương"
-              teacher_avatar="img/avt.png"
-              status="sap-dien-ra"
-              user="9"
-              heart="90"
-            />
-            <CourseItem
-              name="React JS"
-              description="One of the best corporate fashion brands in Sydney"
-              image="/img/img2.png"
-              teacher_name="Đặng Thuyền Vương"
-              teacher_avatar="img/avt.png"
-              status="da-ket-thuc"
-              user="8"
-              heart="80"
-            />
-            <CourseItem
-              name="React JS"
-              description="One of the best corporate fashion brands in Sydney"
-              image="/img/img3.png"
-              teacher_name="Đặng Thuyền Vương"
-              teacher_avatar="img/avt.png"
-              status="dang-dien-ra"
-              user="7"
-              heart="70"
-            />
-            <CourseItem
-              name="React JS"
-              description="One of the best corporate fashion brands in Sydney"
-              image="img/img1.png"
-              teacher_name="Đặng Thuyền Vương"
-              teacher_avatar="img/avt.png"
-              status="sap-dien-ra"
-              user="6"
-              heart="60"
-            />
-            <CourseItem
-              name="React JS"
-              description="One of the best corporate fashion brands in Sydney"
-              image="img/img1.png"
-              teacher_name="Đặng Thuyền Vương"
-              teacher_avatar="img/avt.png"
-              status="da-ket-thuc"
-              user="5"
-              heart="50"
-            />
+            {offline.map((value) => (
+              <CourseItem {...value} key={value._id} />
+            ))}
+            
           </div>
         </div>
       </section>
@@ -83,36 +27,10 @@ export function CourseList() {
             <h2 className="main-title">Khóa học Online</h2>
           </div>
           <div className="list row">
-            {/* <CourseItem
-              name="React JS"
-              description="One of the best corporate fashion brands in Sydney"
-              image="img/img1.png"
-              teacher_name="Đặng Thuyền Vương"
-              teacher_avatar="img/avt.png"
-              status="da-ket-thuc"
-              user="5"
-              heart="50"
-            />
-            <CourseItem
-              name="React JS"
-              description="One of the best corporate fashion brands in Sydney"
-              image="img/img1.png"
-              teacher_name="Đặng Thuyền Vương"
-              teacher_avatar="img/avt.png"
-              status="da-ket-thuc"
-              user="5"
-              heart="50"
-            />
-            <CourseItem
-              name="React JS"
-              description="One of the best corporate fashion brands in Sydney"
-              image="img/img1.png"
-              teacher_name="Đặng Thuyền Vương"
-              teacher_avatar="img/avt.png"
-              status="da-ket-thuc"
-              user="5"
-              heart="50"
-            /> */}
+            {online.map((value) => (
+              <CourseItem {...value} key={value._id} />
+            ))}
+           
           </div>
           <div className="text-deco">C</div>
         </div>

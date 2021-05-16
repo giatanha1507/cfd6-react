@@ -1,19 +1,30 @@
+import { useContext } from "react";
 import Coin from "./component/Coin";
 import CourseDidWrap from "./component/CourseDidWrap";
 import Info from "./component/Info";
 import MyCourseWrap from "./component/MyCourseWrap";
 import PayMentWrap from "./component/PayMentWrap";
 import TopInfo from "./component/TopInfo";
-import { Switch, Route, NavLink, useRouteMatch } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  NavLink,
+  useRouteMatch,
+  Redirect,
+} from "react-router-dom";
+import { Context } from "../../App";
+import useAuth from "../../hook/useAuth";
 
 export default function Profile() {
   let { path } = useRouteMatch();
+  let { data } = useAuth();
+  console.log(`data`, data);
   return (
     <main className="profile" id="main">
       <section>
         <TopInfo
-          avatar="/img/avatar-lg.png"
-          name="trần nghĩa"
+          avatar={data.avatar}
+          name={data.name}
           des="Thành viên của team CFD1-OFFLINE"
         />
         <div className="container">
@@ -39,7 +50,8 @@ export default function Profile() {
                 />
                 <Route path={`${path}/payment-wrap`} component={PayMentWrap} />
                 <Route path={`${path}/coin`} component={Coin} />
-                <Route path="" component={Info} />
+                <Route path={`${path}`} component={Info} />
+                {/* <Redirect from="/" to={`${path}/info`} /> */}
               </Switch>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { CourseItem } from "../../component";
+import homeApi from "../../services/homeApi";
 import {
   Banner,
   CourseList,
@@ -10,17 +11,18 @@ import {
 } from "./component";
 
 export default function Home() {
-  const [online, setOnline] = useState({});
+  let [state, setState] = useState({ online: [], offline: [] });
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-    fetch("http://cfd-reactjs.herokuapp.com/elearning/v4/home")
-      .then((res) => res.json())
-      .then((res) => setOnline(res.online));
+    homeApi.home().then((res) => {
+      setState(res);
+      localStorage.setItem("home", JSON.stringify(res));
+    });
   }, []);
   return (
     <main className="homepage" id="main">
       <Banner />
-      <CourseList />
+      <CourseList online={state.online} offline={state.offline} />
       <Different />
       <Testimonial />
       <Gallery />
