@@ -1,9 +1,11 @@
 import React from "react";
-import useAuth from "../../../hook/useAuth";
+import { useDispatch, useSelector } from "react-redux";
 import useFormValidate from "../../../hook/useFormValidate";
+import { handleUpdate } from "../../../redux/action/authAction";
+import updateInfoApi from "../../../services/updateInfoApi";
 
 export default function TabInfo() {
-  let { data, updateInfo } = useAuth();
+  let { data } = useSelector((store) => store.auth);
   let { form, error, inputChange, check } = useFormValidate(
     {
       ...data,
@@ -47,9 +49,16 @@ export default function TabInfo() {
       },
     }
   );
-  function handleUpdate() {
-    check();
-    updateInfo(form);
+  let dispatch = useDispatch();
+  async function updateInfo() {
+    let err = check();
+    if (Object.keys(err).length === 0) {
+      let res = await updateInfoApi.update(form);
+      // console.log(`res`, res);
+      if (res?.data) {
+        dispatch(handleUpdate(res.data));
+      }
+    }
   }
   return (
     <>
@@ -113,7 +122,7 @@ export default function TabInfo() {
         />
         {error.skype && <p className="text-error profile">{error.skype}</p>}
       </label>
-      <div className="btn main rect" onClick={handleUpdate}>
+      <div className="btn main rect" onClick={updateInfo}>
         LƯU LẠI
       </div>
     </>

@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function Banner() {
+export default function Banner({ title }) {
   return (
     <section className="banner style2" style={{ background: "#cde6fb" }}>
       <div className="container">
         <div className="info">
-          <h1>Thực Chiến front-end căn bản</h1>
+          <h1>{title}</h1>
           <div className="row">
             <div className="date">
               <strong>Khai giảng:</strong> 12/10/2020

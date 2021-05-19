@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import $ from "jquery";
 import Head from "./Head";
 import useFormValidate from "../../hook/useFormValidate";
+import { useParams } from "react-router";
+import homeApi from "../../services/homeApi";
 export default function Register() {
+  let { slug } = useParams();
+
+  console.log(`param`, slug);
+  let [course, setCourse] = useState();
+  useEffect(async () => {
+    let res = await homeApi.course(slug);
+    setCourse(res.data);
+  }, [slug]);
+  console.log(`course`, course);
   let { form, error, inputChange, check, setForm } = useFormValidate(
     {
-      name: "",
-      phone: "",
-      email: "",
-      facebook: "",
+      // ...data,
       gender: "male",
       coin: true,
       payment: "chuyen-khoan",
@@ -62,7 +70,6 @@ export default function Register() {
     $(".select .sub").css({ display: "block" });
     closePayment();
   }
-
 
   function closePayment() {
     let $select = $(".select .sub a");

@@ -56,7 +56,7 @@ export function CourseItem({
             </div>
             <div className="name">{teacher?.title}</div>
           </div>
-          <Link to="/register" className="register-btn">
+          <Link to={`/register/${slug}`} className="register-btn">
             Đăng Ký
           </Link>
         </div>

@@ -1,9 +1,15 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import reactDom from "react-dom";
-import useAuth from "../hook/useAuth";
 import useFormValidate from "../hook/useFormValidate";
+import { useHistory } from "react-router-dom";
+import authApi from "../services/authApi";
+import { handleLogin, popupLogin } from "../redux/action/authAction";
 export function Login() {
-  let { handleLogin, loginErr } = useAuth();
+  let his = useHistory();
+  let { loginErr, popupOpen } = useSelector((store) => store.auth);
+  // let [formError, setFormError] = useState();
+
   let { form, error, inputChange, check } = useFormValidate(
     {
       username: "",
@@ -34,20 +40,27 @@ export function Login() {
   );
 
   function Close() {
+    console.log(`close`);
     document.querySelector(".login").style.display = "none";
   }
 
+  let dispatch = useDispatch();
   async function makeLogin() {
     let err = check();
     if (Object.keys(err).length === 0) {
-      let res = await handleLogin(form);
-      if (res?.success) {
+      let res = await authApi.login(form);
+      if (res?.data) {
+        dispatch(handleLogin(res.data));
         Close();
+        his.push("/profile");
       }
     }
   }
   return reactDom.createPortal(
-    <div className="popup-form popup-login login" style={{ display: "none" }}>
+    <div
+      className="popup-form popup-login login"
+      style={{ display: popupOpen ? "flex" : "none" }}
+    >
       <div
         className="wrap"
         onClick={(e) => {

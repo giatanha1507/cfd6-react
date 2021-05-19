@@ -1,12 +1,15 @@
-import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useDelayLink from "../hook/useDelayLink";
-import { Context } from "../App";
-import useAuth from "../hook/useAuth";
+import { useSelector, useDispatch } from "react-redux";
+import { handleLogout } from "../redux/action/authAction";
 
 export function Header() {
-  let { login, logOut, data } = useAuth();
-  // console.log(`login`, login);
+  let { login, data } = useSelector((store) => store.auth);
+  let dispatch = useDispatch();
+  function _logOut(e) {
+    e.preventDefault();
+    dispatch(handleLogout());
+  }
 
   let delayLink = useDelayLink();
   function menuOpen() {
@@ -60,9 +63,9 @@ export function Header() {
               <div className="have-login">
                 <div className="account">
                   <Link to="/profile" className="info">
-                    <div className="name">{data?.name}</div>
+                    <div className="name">{data.name}</div>
                     <div className="avatar">
-                      <img src={data?.avatar} alt="" />
+                      <img src={data.avatar} alt="" />
                     </div>
                   </Link>
                 </div>
@@ -70,7 +73,7 @@ export function Header() {
                 <div className="sub">
                   <Link to="/profile/my-course-wrap">Khóa học của tôi</Link>
                   <Link to="/profile">Thông tin tài khoản</Link>
-                  <Link onClick={logOut} to="">
+                  <Link to="/" onClick={_logOut}>
                     Đăng xuất
                   </Link>
                 </div>

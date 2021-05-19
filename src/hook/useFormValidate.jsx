@@ -9,10 +9,13 @@ const regEmail =
 const regFacebook =
   /(?:https?:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-\.]*)/i;
 const regSkype = /[a-zA-Z][a-zA-Z0-9\.,\-_]{5,31}/i;
+const regTitleContent = /(?:[A-Z][a-z]+)/;
+// const regContent = /\[([^\]\[\r\n]*)\]/gm;
 
 export default function useFormValidate(initialForm, validate) {
   let [form, setForm] = useState(initialForm);
   let [error, setError] = useState("");
+
   function inputChange(e) {
     let name = e.target.name;
     let value = e.target.value;
@@ -26,7 +29,7 @@ export default function useFormValidate(initialForm, validate) {
   }
   function check() {
     let err = {};
-    
+
     let { rule, message } = validate;
     for (let i in rule) {
       let r = rule[i];
@@ -54,6 +57,9 @@ export default function useFormValidate(initialForm, validate) {
         if (pattern === "skype") {
           pattern = regSkype;
         }
+        if (pattern === "title") {
+          pattern = regTitleContent;
+        }
 
         if (!pattern.test(form[i])) {
           err[i] = m?.pattern || "Khong dung dinh dang";
@@ -71,9 +77,9 @@ export default function useFormValidate(initialForm, validate) {
       }
     }
 
-    if (Object.keys(err).length === 0) {
-      // console.log(`form`, form);
-    }
+    // if (Object.keys(err).length === 0) {
+    //   // console.log(`form`, form);
+    // }
     setError(err);
     return err;
   }

@@ -37,3 +37,24 @@
   border-radius: 100%;
   z-index: 200;
 }
+
+.customSection {
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  transform: translateX(100%);
+  transition-duration: 0.7s;
+  &.active {
+    transform: translateX(0%);
+    transition-duration: 0.7s;
+  }
+}
+
+.custom {
+  position: absolute !important;
+  top: 0;
+  right: 0;
+}
+.btnCustom {
+  width: 100%;
+}
