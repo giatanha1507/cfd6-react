@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useFormValidate from "../../../hook/useFormValidate";
 import { Message } from "../../../component/Message";
 
@@ -67,17 +67,28 @@ export default function Form() {
       },
     }
   );
-
+  // useEffect(() => {
+  //   console.log(`data`, data);
+  // }, [data]);
   async function handleContact() {
     let err = check();
     if (Object.keys(err).length === 0) {
       let res = await contactApi.contact(form);
       if (res?.success) {
         setModal(true);
-        setForm({ ...form, name: data.name || "", phone: "" });
+        setForm({
+          ...form,
+          name: "" || data.name,
+          phone: "" || data.phone,
+          title: "",
+          facebook: "" || data.facebook,
+          email: "" || data.email,
+          content: "",
+        });
       }
     }
   }
+  // console.log(`form`, form);
 
   return (
     <div className="form">

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Banner({ title, close_time, money }) {
+export default function Banner({ title, opening_time, money }) {
   return (
     <section className="banner style2" style={{ background: "#cde6fb" }}>
       <div className="container">
@@ -8,7 +8,7 @@ export default function Banner({ title, close_time, money }) {
           <h1>{title}</h1>
           <div className="row">
             <div className="date">
-              <strong>Khai giảng:</strong> {close_time}
+              <strong>Khai giảng:</strong> {opening_time}
             </div>
             <div className="time">
               <strong>Thời lượng:</strong> 18 buổi

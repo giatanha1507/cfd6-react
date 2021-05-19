@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 export default function Head({ title }) {
   let { slug } = useParams();
-  console.log(`slug`, slug);
+  // console.log(`slug`, slug);
   return (
     <>
       <div className="main-sub-title">ĐĂNG KÝ</div>

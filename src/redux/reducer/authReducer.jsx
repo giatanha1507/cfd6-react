@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, UPDATE } from "../type";
+import { LOGIN, LOGOUT, UPDATE, CONTACT } from "../type";
 
 let init = {
   login: JSON.parse(localStorage.getItem("login")) || false,
@@ -23,6 +23,7 @@ export default function authReducer(state = init, action) {
       return {
         ...state,
         login: false,
+        data: "",
       };
     case UPDATE:
       localStorage.setItem("data", JSON.stringify(action.payload));
@@ -30,7 +31,7 @@ export default function authReducer(state = init, action) {
         ...state,
         data: action.payload,
       };
-    
+
     default:
       return state;
   }

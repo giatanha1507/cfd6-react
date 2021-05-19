@@ -3,7 +3,15 @@ import AccorInfo from "./AccorInfo";
 import ConditionWrap from "./ConditionWrap";
 import Teacher from "./Teacher";
 
-export default function Intro({ content }) {
+export default function Intro({
+  content,
+  benefits,
+  required,
+  opening_time,
+  schedule,
+  teacher,
+  long_description,
+}) {
   let [active, setActive] = useState(-1);
   function showAccor(i) {
     setActive(i);
@@ -14,14 +22,10 @@ export default function Intro({ content }) {
   return (
     <section className="section-2">
       <div className="container">
-        <p className="des">
-          Many Laravel apps don’t warrant the complexity of a full front-end
-          framework like Vue or React. In this series, we’ll walk through a
-          handful of simple ways to add dynamic functionality to your apps.
-        </p>
+        <p className="des">{long_description}</p>
         <h2 className="title">giới thiệu về khóa học</h2>
         <div className="cover">
-          <img src="img/course-detail-img.png" alt="" />
+          <img src="/img/course-detail-img.png" alt="" />
         </div>
         <h3 className="title">nội dung khóa học</h3>
         {content?.map((value, i) => (
@@ -34,7 +38,7 @@ export default function Intro({ content }) {
           />
         ))}
 
-        <ConditionWrap />
+        <ConditionWrap benifits={benefits} required={required} />
         <h3 className="title">
           <div className="date-start">lịch học</div>
           <div className="sub">
@@ -42,27 +46,20 @@ export default function Intro({ content }) {
           </div>
         </h3>
         <p>
-          <strong>Ngày bắt đầu: </strong> 09/09/2020 <br />
-          <strong>Thời gian học: </strong> Thứ 3 từ 18h45-21h45, Thứ 7 từ
-          12h-15h, Chủ nhật từ 15h-18h
+          <strong>Ngày bắt đầu: </strong> {opening_time} <br />
+          <strong>Thời gian học: </strong> {schedule}
         </p>
         <h3 className="title">Người dạy</h3>
         <Teacher
-          teacher_ava="/img/avatar-lg.png"
-          name="TRẦN NGHĨA"
-          teacher_des="Founder CFD &amp; Creative Front-End Developer"
-          teacher_intro="My education, career, and even personal life have been molded
-                  by one simple principle; well designed information resonates
-                  with people and can change lives.I have a passion for making
-                  information resonate. It all starts with how people think.
-                  With how humans work. As humans we have learned how to read
-                  and write and while that is incredible, we are also already
-                  hard-wired to do some things a bit more 'automatically' "
-          teacher_web="http://nghiatran.info"
+          teacher_ava={teacher?.avatar.link}
+          name={teacher?.title}
+          teacher_des={teacher?.position}
+          teacher_intro={teacher?.description}
+          teacher_web={teacher?.website}
         />
         <div className="bottom">
           <div className="user">
-            <img src="img/user-group-icon.png" alt="" /> 12 bạn đã đăng ký
+            <img src="/img/user-group-icon.png" alt="" /> 12 bạn đã đăng ký
           </div>
           <div className="btn main btn-register round">đăng ký</div>
           <div className="btn-share btn overlay round btn-icon">

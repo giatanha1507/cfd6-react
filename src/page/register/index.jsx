@@ -2,21 +2,24 @@ import { useState, useEffect } from "react";
 import $ from "jquery";
 import Head from "./Head";
 import useFormValidate from "../../hook/useFormValidate";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import homeApi from "../../services/homeApi";
+import { useDispatch, useSelector } from "react-redux";
+import registerApi from "../../services/registerApi";
 export default function Register() {
   let { slug } = useParams();
 
-  console.log(`param`, slug);
+  // console.log(`param`, slug);
   let [course, setCourse] = useState();
+  let { data } = useSelector((store) => store.auth);
   useEffect(async () => {
     let res = await homeApi.course(slug);
     setCourse(res.data);
   }, [slug]);
-  console.log(`course`, course);
+  // console.log(`course`, course);
   let { form, error, inputChange, check, setForm } = useFormValidate(
     {
-      // ...data,
+      ...data,
       gender: "male",
       coin: true,
       payment: "chuyen-khoan",
@@ -81,6 +84,17 @@ export default function Register() {
       });
     });
   }
+  let his = useHistory();
+  async function handleRegister() {
+    let err = check();
+    if (Object.keys(err).length === 0) {
+      let res = await registerApi.register(form, slug);
+      console.log(`res`, res);
+      if (res?.success) {
+        his.push("/");
+      }
+    }
+  }
 
   return (
     <main className="register-course" id="main">
@@ -139,9 +153,7 @@ export default function Register() {
                   type="text"
                   placeholder="https://facebook.com"
                 />
-                {error.facebook && (
-                  <p className="text-error">{error.facebook}</p>
-                )}
+                {error.fb && <p className="text-error">{error.fb}</p>}
               </label>
               <div>
                 <label className="disable">
@@ -223,7 +235,7 @@ export default function Register() {
                   placeholder="Mong muốn cá nhân và lịch bạn có thể học."
                 />
               </label>
-              <div className="btn main rect" onClick={check}>
+              <div className="btn main rect" onClick={handleRegister}>
                 đăng ký
               </div>
             </div>

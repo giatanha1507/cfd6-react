@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, UPDATE } from "../type";
+import { CONTACT, LOGIN, LOGOUT, UPDATE } from "../type";
 
 export function handleLogin(user) {
   return {

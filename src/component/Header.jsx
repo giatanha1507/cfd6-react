@@ -1,14 +1,16 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import useDelayLink from "../hook/useDelayLink";
 import { useSelector, useDispatch } from "react-redux";
 import { handleLogout } from "../redux/action/authAction";
 
 export function Header() {
   let { login, data } = useSelector((store) => store.auth);
+  let his = useHistory();
   let dispatch = useDispatch();
   function _logOut(e) {
     e.preventDefault();
     dispatch(handleLogout());
+    his.push("/");
   }
 
   let delayLink = useDelayLink();
