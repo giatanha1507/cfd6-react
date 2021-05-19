@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import AccorInfo from "./AccorInfo";
 import ConditionWrap from "./ConditionWrap";
 import Teacher from "./Teacher";
 
-export default function Intro() {
+export default function Intro({ content }) {
+  let [active, setActive] = useState(-1);
+  function showAccor(i) {
+    setActive(i);
+    if (active === i) {
+      setActive(-1);
+    }
+  }
   return (
     <section className="section-2">
       <div className="container">
@@ -17,48 +24,16 @@ export default function Intro() {
           <img src="img/course-detail-img.png" alt="" />
         </div>
         <h3 className="title">nội dung khóa học</h3>
-        <AccorInfo
-          date="Ngày 1"
-          intro="Giới thiệu HTML, SEO, BEM."
-          content="I'd like to demonstrate a powerful little pattern called
-              “Server-Fetched Partials” that offers some tangible benefits over
-              alternatives like VueJS for simple page interactions."
-        />
-        <AccorInfo
-          date="Ngày 2"
-          intro="CSS, CSS3, Flexbox, Grid"
-          content="I'd like to demonstrate a powerful little pattern called
-              “Server-Fetched Partials” that offers some tangible benefits over
-              alternatives like VueJS for simple page interactions."
-        />
-        <AccorInfo
-          date="Ngày 3"
-          intro="Media Queries"
-          content="I'd like to demonstrate a powerful little pattern called
-              “Server-Fetched Partials” that offers some tangible benefits over
-              alternatives like VueJS for simple page interactions."
-        />
-        <AccorInfo
-          date="Ngày 4"
-          intro="Bootstrap 4"
-          content="I'd like to demonstrate a powerful little pattern called
-              “Server-Fetched Partials” that offers some tangible benefits over
-              alternatives like VueJS for simple page interactions."
-        />
-        <AccorInfo
-          date="Ngày 5"
-          intro="Thực hành dự án website Landing Page"
-          content="I'd like to demonstrate a powerful little pattern called
-              “Server-Fetched Partials” that offers some tangible benefits over
-              alternatives like VueJS for simple page interactions."
-        />
-        <AccorInfo
-          date="Ngày 6"
-          intro="Cài đặt Grunt và cấu trúc thư mục dự án"
-          content="I'd like to demonstrate a powerful little pattern called
-              “Server-Fetched Partials” that offers some tangible benefits over
-              alternatives like VueJS for simple page interactions."
-        />
+        {content?.map((value, i) => (
+          <AccorInfo
+            {...value}
+            key={i}
+            index={i + 1}
+            active={active === i}
+            onClick={showAccor.bind(null, i)}
+          />
+        ))}
+
         <ConditionWrap />
         <h3 className="title">
           <div className="date-start">lịch học</div>
@@ -91,7 +66,7 @@ export default function Intro() {
           </div>
           <div className="btn main btn-register round">đăng ký</div>
           <div className="btn-share btn overlay round btn-icon">
-            <img src="img/facebook.svg" alt="" />
+            <img src="/img/facebook.svg" alt="" />
           </div>
         </div>
       </div>

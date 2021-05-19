@@ -16,9 +16,7 @@ export default function CourseOnl({ online }) {
           <h2 className="main-title">ONLINE</h2>
         </div>
         <div className="list row">
-          {online.map((value) => (
-            <CourseItem {...value} key={value._id} />
-          ))}
+         
         </div>
       </div>
     </section>

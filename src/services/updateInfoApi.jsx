@@ -1,7 +1,6 @@
 const updateInfoApi = {
   update(data) {
     let { token } = JSON.parse(localStorage.getItem("data"));
-    // console.log(`token`, token);
     return fetch(
       "http://cfd-reactjs.herokuapp.com/elearning/v4/profile/update",
       {

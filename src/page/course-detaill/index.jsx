@@ -17,8 +17,8 @@ export default function CourseDetail() {
   // console.log(`course`, course);
   return (
     <main className="course-detail" id="main">
-      <Banner title={course?.title} />
-      <Intro />
+      <Banner {...course} />
+      <Intro {...course} />
       <Project />
       <Coure />
     </main>

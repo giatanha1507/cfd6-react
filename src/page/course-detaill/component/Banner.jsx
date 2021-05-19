@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Banner({ title }) {
+export default function Banner({ title, close_time, money }) {
   return (
     <section className="banner style2" style={{ background: "#cde6fb" }}>
       <div className="container">
@@ -8,7 +8,7 @@ export default function Banner({ title }) {
           <h1>{title}</h1>
           <div className="row">
             <div className="date">
-              <strong>Khai giảng:</strong> 12/10/2020
+              <strong>Khai giảng:</strong> {close_time}
             </div>
             <div className="time">
               <strong>Thời lượng:</strong> 18 buổi
@@ -23,11 +23,11 @@ export default function Banner({ title }) {
         <div className="container">
           <div className="video">
             <div className="icon">
-              <img src="img/play-icon-white.png" alt="" />
+              <img src="/img/play-icon-white.png" alt="" />
             </div>{" "}
             <span>giới thiệu</span>
           </div>
-          <div className="money">4.000.000 VND</div>
+          <div className="money">{money} VND</div>
         </div>
       </div>
     </section>
