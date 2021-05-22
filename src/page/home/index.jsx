@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { CourseItem } from "../../component";
+import { Fragment, useEffect, useState } from "react";
 import homeApi from "../../services/homeApi";
 import {
   Banner,
@@ -11,7 +10,12 @@ import {
 } from "./component";
 
 export default function Home() {
-  let [state, setState] = useState({ online: [], offline: [] });
+  let [state, setState] = useState({
+    online: [],
+    offline: [],
+    gallery: [],
+    review: [],
+  });
 
   useEffect(() => {
     homeApi.home().then((res) => {
@@ -19,13 +23,15 @@ export default function Home() {
       localStorage.setItem("home", JSON.stringify(res));
     });
   }, []);
+
+  if (!state?.gallery?.length > 0) return <Fragment />;
   return (
     <main className="homepage" id="main">
       <Banner />
       <CourseList online={state.online} offline={state.offline} />
       <Different />
-      <Testimonial />
-      <Gallery />
+      <Testimonial review={state.review} />
+      <Gallery gallery={state.gallery} />
       <Action />
     </main>
   );

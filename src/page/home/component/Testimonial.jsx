@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Testimonial() {
+export function Testimonial({ review }) {
   return (
     <section className="section-testimonial">
       <div className="container">

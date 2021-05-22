@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, UPDATE, CONTACT } from "../type";
+import { LOGIN, LOGOUT, UPDATE } from "../type";
 
 let init = {
   login: JSON.parse(localStorage.getItem("login")) || false,
@@ -12,6 +12,7 @@ export default function authReducer(state = init, action) {
     case LOGIN:
       localStorage.setItem("login", true);
       localStorage.setItem("data", JSON.stringify(action.payload));
+      localStorage.setItem("token", JSON.stringify(action.payload.token));
       return {
         ...state,
         login: true,
@@ -35,17 +36,6 @@ export default function authReducer(state = init, action) {
     default:
       return state;
   }
-  // if (action.type === "LOGIN") {
-  //   localStorage.setItem("login", true);
-  //   return { ...state, login: true, data: action.payload };
-  // } else if (action.type === "LOGOUT") {
-  //   localStorage.setItem("login", false);
-  //   localStorage.removeItem("data");
-  //   return { ...state, login: false };
-  // } else if (action.type === "ERROR") {
-  //   return { ...state, loginErr: action.payload };
-  // } else if (action.type === "UPDATE") {
-  //   return { ...state, data: action.payload };
-  // }
+
   return state;
 }

@@ -42,18 +42,14 @@ export function Login() {
   function Close() {
     console.log(`close`);
     document.querySelector(".login").style.display = "none";
+    his.push("/profile");
   }
 
   let dispatch = useDispatch();
   async function makeLogin() {
     let err = check();
     if (Object.keys(err).length === 0) {
-      let res = await authApi.login(form);
-      if (res?.data) {
-        dispatch(handleLogin(res.data));
-        Close();
-        his.push("/profile");
-      }
+      dispatch(handleLogin(form, Close));
     }
   }
   return reactDom.createPortal(

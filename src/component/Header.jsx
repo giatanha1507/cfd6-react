@@ -76,6 +76,7 @@ export function Header() {
                   <Link to="/profile/my-course-wrap">Khóa học của tôi</Link>
                   <Link to="/profile">Thông tin tài khoản</Link>
                   <Link to="/" onClick={_logOut}>
+                    {/*  */}
                     Đăng xuất
                   </Link>
                 </div>

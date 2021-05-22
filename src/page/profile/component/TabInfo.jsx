@@ -53,11 +53,7 @@ export default function TabInfo() {
   async function updateInfo() {
     let err = check();
     if (Object.keys(err).length === 0) {
-      let res = await updateInfoApi.update(form);
-      // console.log(`res`, res);
-      if (res?.data) {
-        dispatch(handleUpdate(res.data));
-      }
+      dispatch(handleUpdate(form));
     }
   }
   return (
@@ -92,7 +88,7 @@ export default function TabInfo() {
         <p>
           Email<span>*</span>
         </p>
-        <input defaultValue="vuong.dang@dna.vn" disabled type="text" />
+        <input defaultValue={form.email} disabled type="text" />
       </label>
       <label style={{ flexWrap: "wrap" }}>
         <p>

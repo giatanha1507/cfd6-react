@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Header, Footer, Login, Logup } from "./component";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Provider } from "react-redux";
 import Home from "./page/home";
 import Team from "./page/team";
 import Register from "./page/register";
@@ -17,7 +18,6 @@ import "./assets/customcss/custom.scss";
 import NotFound from "./page/404";
 import PrivateRoute from "./component/PrivateRouter";
 import store from "./redux";
-import { Provider } from "react-redux";
 
 export let Context = React.createContext();
 

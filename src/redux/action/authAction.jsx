@@ -1,9 +1,17 @@
-import { CONTACT, LOGIN, LOGOUT, UPDATE } from "../type";
+import authApi from "../../services/authApi";
+import updateInfoApi from "../../services/updateInfoApi";
+import { LOGIN, LOGOUT, UPDATE } from "../type";
 
-export function handleLogin(user) {
-  return {
-    type: LOGIN,
-    payload: user,
+export function handleLogin(form, callback) {
+  return async (dispatch) => {
+    let res = await authApi.login(form);
+    if (res?.data) {
+      dispatch({
+        type: LOGIN,
+        payload: res.data,
+      });
+      callback();
+    }
   };
 }
 
@@ -14,8 +22,13 @@ export function handleLogout() {
 }
 
 export function handleUpdate(form) {
-  return {
-    type: UPDATE,
-    payload: form,
+  return async (dispatch) => {
+    let res = await updateInfoApi.update(form);
+    if (res?.data) {
+      dispatch({
+        type: UPDATE,
+        payload: res.data,
+      });
+    }
   };
 }

@@ -1,7 +1,6 @@
 import React from "react";
 import { useRef, useEffect } from "react";
 import $ from "jquery";
-import { act } from "react-dom/cjs/react-dom-test-utils.production.min";
 
 export default function AccorInfo({
   index,

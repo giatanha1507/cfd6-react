@@ -77,9 +77,6 @@ export default function useFormValidate(initialForm, validate) {
       }
     }
 
-    // if (Object.keys(err).length === 0) {
-    //   // console.log(`form`, form);
-    // }
     setError(err);
     return err;
   }
