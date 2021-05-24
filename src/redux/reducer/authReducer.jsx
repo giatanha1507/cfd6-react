@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, UPDATE } from "../type";
+import { LOGIN, LOGOUT, UPDATE, REGISTER, ERROR } from "../type";
 
 let init = {
   login: JSON.parse(localStorage.getItem("login")) || false,
@@ -31,6 +31,16 @@ export default function authReducer(state = init, action) {
       return {
         ...state,
         data: action.payload,
+      };
+    case REGISTER:
+      return {
+        ...state,
+        // data: action.payload,
+      };
+    case ERROR:
+      return {
+        ...state,
+        loginErr: action.payload,
       };
 
     default:

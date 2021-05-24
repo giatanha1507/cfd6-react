@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import reactDom from "react-dom";
 import useFormValidate from "../hook/useFormValidate";
 import { useHistory } from "react-router-dom";
-import authApi from "../services/authApi";
 import { handleLogin, popupLogin } from "../redux/action/authAction";
 export function Login() {
   let his = useHistory();
@@ -39,10 +38,12 @@ export function Login() {
     }
   );
 
-  function Close() {
-    console.log(`close`);
+  function mClose() {
     document.querySelector(".login").style.display = "none";
+  }
+  function Close() {
     his.push("/profile");
+    mClose();
   }
 
   let dispatch = useDispatch();
@@ -116,7 +117,7 @@ export function Login() {
           <input type="text" placeholder="Email" />
           <div className="btn rect main btn-next">Tiếp theo</div>
           <div className="back" />
-          <div className="close" onClick={Close}>
+          <div className="close" onClick={mClose}>
             <img src="img/close-icon.png" alt="" />
           </div>
         </div>

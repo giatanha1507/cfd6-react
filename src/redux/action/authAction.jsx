@@ -1,6 +1,6 @@
 import authApi from "../../services/authApi";
 import updateInfoApi from "../../services/updateInfoApi";
-import { LOGIN, LOGOUT, UPDATE } from "../type";
+import { LOGIN, LOGOUT, UPDATE, REGISTER, ERROR } from "../type";
 
 export function handleLogin(form, callback) {
   return async (dispatch) => {
@@ -18,6 +18,21 @@ export function handleLogin(form, callback) {
 export function handleLogout() {
   return {
     type: LOGOUT,
+  };
+}
+export function handleRegister(form, callback) {
+  return async (dispatch) => {
+    let res = await authApi.register(form);
+    if (res?.data) {
+      dispatch({
+        type: REGISTER,
+        // payload: res.data,
+      });
+      callback();
+    }
+    if (res?.error) {
+      dispatch({ type: ERROR, payload: res.error });
+    }
   };
 }
 

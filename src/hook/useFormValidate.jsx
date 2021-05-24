@@ -19,6 +19,8 @@ export default function useFormValidate(initialForm, validate) {
   function inputChange(e) {
     let name = e.target.name;
     let value = e.target.value;
+
+    // console.log(`pass1`, pass1);
     if (e.target.type === "checkbox") {
       value = e.target.checked;
     }
@@ -29,7 +31,6 @@ export default function useFormValidate(initialForm, validate) {
   }
   function check() {
     let err = {};
-
     let { rule, message } = validate;
     for (let i in rule) {
       let r = rule[i];
@@ -81,5 +82,5 @@ export default function useFormValidate(initialForm, validate) {
     return err;
   }
 
-  return { form, error, inputChange, check, setForm };
+  return { form, error, inputChange, check, setForm, setError };
 }

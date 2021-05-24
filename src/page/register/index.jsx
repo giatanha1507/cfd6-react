@@ -85,7 +85,7 @@ export default function Register() {
     });
   }
   let his = useHistory();
-  async function handleRegister() {
+  async function handleRegisterCourse() {
     let err = check();
     if (Object.keys(err).length === 0) {
       let res = await registerApi.register(form, slug);
@@ -235,7 +235,7 @@ export default function Register() {
                   placeholder="Mong muốn cá nhân và lịch bạn có thể học."
                 />
               </label>
-              <div className="btn main rect" onClick={handleRegister}>
+              <div className="btn main rect" onClick={handleRegisterCourse}>
                 đăng ký
               </div>
             </div>

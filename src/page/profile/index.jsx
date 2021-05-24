@@ -6,15 +6,10 @@ import PayMentWrap from "./component/PayMentWrap";
 import TopInfo from "./component/TopInfo";
 import { Switch, Route, NavLink, useRouteMatch } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 
 export default function Profile() {
   let { data } = useSelector((store) => store.auth);
   let { path } = useRouteMatch();
-  // useEffect(() => {
-  //   let res = 
-    
-  // }, [data])
   return (
     <main className="profile" id="main">
       <section>
