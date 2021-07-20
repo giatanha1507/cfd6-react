@@ -20,6 +20,8 @@ export default function Home() {
   useEffect(() => {
     homeApi.home().then((res) => {
       setState(res);
+      console.log(`res`, res);
+      console.log(`res.online`, res.online);
       localStorage.setItem("home", JSON.stringify(res));
     });
   }, []);

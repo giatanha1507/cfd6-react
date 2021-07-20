@@ -22,10 +22,10 @@ export function Login() {
         },
         password: {
           required: true,
-          min: 6,
-          max: 32,
+          // pattern: "password",
         },
       },
+
       message: {
         username: {
           required: "Vui long dien ten dang nhap",
@@ -69,6 +69,7 @@ export function Login() {
           <h2 className="title">Đăng nhập</h2>
           {loginErr && <p className="text-error">{loginErr}</p>}
           <input
+            className={`${error.username ? "error" : ""}`}
             name="username"
             value={form.username}
             type="text"
@@ -77,6 +78,7 @@ export function Login() {
           />
           {error.username && <p className="text-error">{error.username}</p>}
           <input
+            className={`${error.password ? "error" : ""}`}
             name="password"
             value={form.password}
             type="password"

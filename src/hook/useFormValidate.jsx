@@ -15,7 +15,7 @@ const regTitleContent = /(?:[A-Z][a-z]+)/;
 export default function useFormValidate(initialForm, validate) {
   let [form, setForm] = useState(initialForm);
   let [error, setError] = useState("");
-
+  var checkPassword = "";
   function inputChange(e) {
     let name = e.target.name;
     let value = e.target.value;
@@ -74,6 +74,16 @@ export default function useFormValidate(initialForm, validate) {
       if (r.max) {
         if (Object.keys(form[i]).length > r.max) {
           err[i] = `Khong duoc lon hon ${r.max} ki tu`;
+        }
+      }
+      if (r.check) {
+        checkPassword = form[i];
+      }
+      if (r.re_password) {
+        // console.log(`form[i]`, form[i]);
+
+        if (checkPassword !== form[i]) {
+          err[i] = "Mat khau khong khop";
         }
       }
     }

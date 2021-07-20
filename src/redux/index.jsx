@@ -1,4 +1,4 @@
-import { combineReducers, createStore, applyMiddleware } from "redux";
+import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import authReducer from "./reducer/authReducer";
 
 let reducer = combineReducers({
@@ -12,6 +12,7 @@ const middleWare = (store) => (next) => (action) => {
     next(action);
   }
 };
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-let store = createStore(reducer, applyMiddleware(middleWare));
+let store = createStore(reducer, composeEnhancers(applyMiddleware(middleWare)));
 export default store;

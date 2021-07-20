@@ -10,7 +10,7 @@ export function Logup() {
   }
   let { loginErr } = useSelector((store) => store.auth);
 
-  let { form, error, inputChange, check, setError } = useFormValidate(
+  let { form, error, inputChange, check } = useFormValidate(
     {
       username: "",
       password: "",
@@ -26,11 +26,13 @@ export function Logup() {
           required: true,
           min: 6,
           max: 32,
+          check: "password",
         },
         re_password: {
           required: true,
           min: 6,
           max: 32,
+          re_password: true,
         },
       },
       message: {
@@ -51,15 +53,8 @@ export function Logup() {
   let dispatch = useDispatch();
   function makeLogup() {
     let err = check();
-    if (form.password === form.re_password) {
-      if (Object.keys(err).length === 0) {
-        dispatch(handleRegister(form, Close));
-      }
-    } else {
-      setError({
-        ...error,
-        re_password: "Mat khau khong trung khop",
-      });
+    if (Object.keys(err).length === 0) {
+      dispatch(handleRegister(form, Close));
     }
   }
   return reactDom.createPortal(
