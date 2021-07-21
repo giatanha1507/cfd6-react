@@ -204,6 +204,7 @@ export default function Register() {
               </label>
 
               <label>
+                {/* <p></p> */}
                 <p>Hình thức thanh toán</p>
                 <div onClick={selectPayment} className="select">
                   <div className="head">Chuyển khoản</div>
